@@ -1,6 +1,7 @@
 # OrderList
 
-The system contains orders with related goods
+The system contains orders with related goods.
+
 Web-service_1  returns current time
 
 ## Technologies used in the project:

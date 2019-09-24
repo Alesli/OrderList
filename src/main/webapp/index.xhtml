@@ -62,10 +62,10 @@
     <div class="div">
         <h:form id="form">
 
-            <p:panel header="Получить текущее время с Веб-сервис_1">
+            <p:panel header="Get current time with Web-service_1">
                 <h:panelGrid columns="1" cellpadding="4">
 
-                    <p:commandButton id="btnId" value="Узнать дату" action="#{beanDate.setDate}"
+                    <p:commandButton id="btnId" value="Get date" action="#{beanDate.setDate}"
                                      update="greeting-panel" oncomplete="PF('greetingDialog').show()"/>
                 </h:panelGrid>
             </p:panel>
@@ -81,7 +81,7 @@
     </div>
 
     <div class="div">
-        <p:panel header="Order List">
+        <p:panel header="Order list">
             <c:if test="${!empty orderDetailsService.findAll()}">
                 <table class="tg">
                     <tr>
