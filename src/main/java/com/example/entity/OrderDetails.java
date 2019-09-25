@@ -1,8 +1,6 @@
 package com.example.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
@@ -11,11 +9,9 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "order_detail")
-@ManagedBean(name="order_detail")
+@ManagedBean(name="orderDetail")
 public class OrderDetails implements Serializable {
 
     @Id
@@ -31,10 +27,6 @@ public class OrderDetails implements Serializable {
     @Basic
     @Column(name = "quantity")
     private int quantity;
-
-//    @Basic
-//    @Column(name = "id_order")
-//    private int idOrder;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_order")
