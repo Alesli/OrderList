@@ -28,8 +28,6 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 
     @Override
     public Order findOrderById(int id) {
-        FacesContext.getCurrentInstance().getExternalContext()
-                .getSessionMap().put("findOrderById", id);
         return entityManager.find(Order.class, id);
     }
 
@@ -45,7 +43,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
             newOrder.setNameCustomer(newOrder.getNameCustomer());
             newOrder.setSumOrder(newOrder.getSumOrder());
             newOrder.setAddressCustomer(newOrder.getAddressCustomer());
-            newOrder.setDateCreation(newOrder.getDateCreation());
+            newOrder.setDateCreation(new Date());
             entityManager.getTransaction().begin();
             entityManager.merge(newOrder);
             entityManager.getTransaction().commit();
@@ -60,7 +58,6 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
             newProduct.setName(newProduct.getName());
             newProduct.setSerialNumber(newProduct.getSerialNumber());
             newProduct.setDescription(newProduct.getDescription());
-            newProduct.setDateProduct(newProduct.getDateProduct());
             entityManager.getTransaction().begin();
             entityManager.merge(newProduct);
             entityManager.getTransaction().commit();

@@ -55,7 +55,6 @@ public class Product implements Serializable {
         serialNumber = product.getSerialNumber();
         name = product.getName();
         description = product.getDescription();
-        dateProduct = product.dateProduct;
         return product;
     }
 

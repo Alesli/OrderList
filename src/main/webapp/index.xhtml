@@ -18,6 +18,11 @@
             height: 100%;
         }
 
+        .button{
+            margin: 5px;
+            padding: 10px;
+        }
+
         .tg {
             border-collapse: collapse;
             border-spacing: 0;
@@ -60,8 +65,7 @@
 <h:body>
 
     <div class="div">
-        <h:form id="form">
-
+        <h:form>
             <p:panel header="Get current time with Web-service_1">
                 <h:panelGrid columns="1" cellpadding="4">
 
@@ -70,13 +74,12 @@
                 </h:panelGrid>
             </p:panel>
 
-            <p:dialog header="Сегодня" widgetVar="greetingDialog"
+            <p:dialog header="Today" widgetVar="greetingDialog"
                       modal="true" resizable="false">
                 <h:panelGrid id="greeting-panel" columns="1" cellpadding="4">
                     <h:outputText value="#{сurrentTime.getCurrentTime()}"/>
                 </h:panelGrid>
             </p:dialog>
-
         </h:form>
     </div>
 
@@ -94,11 +97,9 @@
                     <h:outputText value="Address Customer:"/>
                     <h:inputText value="#{order.addressCustomer}"/>
 
-                    <h:outputText value="The total amount of the order:"/>
+                    <h:outputText value=" The total amount of the order:"/>
                     <h:inputText value="#{order.sumOrder}"/>
 
-                    <h:outputText value="Date of creation:"/>
-                    <h:inputText value="#{order.dateCreation}"/><br/>
                     <h:commandButton value="Update" action="#{order.updateOrderDetails}"/>
                 </h:panelGrid>
             </p:panel>
@@ -122,9 +123,6 @@
 
                     <h:outputText value="Description:"/>
                     <h:inputText value="#{product.description}"/>
-
-                    <h:outputText value="Serial date production:"/>
-                    <h:inputText value="#{product.dateProduct}"/><br/>
                     <h:commandButton value="Update" action="#{product.updateProductDetails}"/>
                 </h:panelGrid>
             </p:panel>
@@ -138,41 +136,45 @@
                 <table class="tg">
                     <tr>
                         <th width="80">ID</th>
-                        <th width="270">Order</th>
+                        <th width="290">Order</th>
                         <th width="210">Quantity</th>
-                        <th width="290">Product</th>
+                        <th width="310">Product</th>
                     </tr>
                     <ui:repeat value="${orderDetailsService.findAll()}" var="details">
                         <tr>
                             <td class="row">${details.id}</td>
                             <td>
                                 <ul>
+                                    <li>Order ID: ${details.order.id}</li>
                                     <li>Name customer: ${details.order.nameCustomer}</li>
                                     <li>Address customer: ${details.order.addressCustomer}</li>
                                     <li>The total amount of the order: ${details.order.sumOrder}</li>
+                                    <li>Date of creation: <h:outputText value="#{details.order.dateCreation}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                                    </h:outputText></li>
                                 </ul>
                             </td>
                             <td class="row">Quantity: ${details.quantity}</td>
                             <td>
                                 <ul>
+                                    <li>Product ID: ${details.product.id}</li>
                                     <li>Name: ${details.product.name}</li>
                                     <li>Product Serial Number: ${details.product.serialNumber}</li>
                                     <li>Description: ${details.product.description}</li>
+                                    <li>Serial date production: <h:outputText value="#{details.product.dateProduct}">
+                                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                                    </h:outputText></li>
                                 </ul>
                             </td>
                         </tr>
                     </ui:repeat>
                 </table>
             </c:if>
+            <h:form class="button">
+                <h:commandButton value="Update order list" action="#{orderDetailsService.findAll()}"/>
+            </h:form>
         </p:panel>
-        <h:form>
-            <p:panel header="Update order list">
-                <h:panelGrid columns="2">
-                    <h:commandButton value="Update" action="#{orderDetailsService.findAll()}"/>
-                </h:panelGrid>
-            </p:panel>
 
-        </h:form>
     </div>
 
 </h:body>

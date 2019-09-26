@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Getter
@@ -40,7 +41,6 @@ public class Order implements Serializable {
     @Column(name = "date_creation")
     private Date dateCreation;
 
-
     public void updateOrderDetails() {
         ods = new OrderDetailsServiceImpl();
         ods.updateOrder(this);
@@ -52,7 +52,6 @@ public class Order implements Serializable {
         nameCustomer = order.getNameCustomer();
         addressCustomer = order.getAddressCustomer();
         sumOrder = order.getSumOrder();
-        dateCreation = order.getDateCreation();
         return order;
     }
 
