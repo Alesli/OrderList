@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @Table(name = "order_detail")
-@ManagedBean(name="orderDetail")
+@ManagedBean(name = "orderDetail")
 public class OrderDetails implements Serializable {
 
     @Id
@@ -35,9 +35,9 @@ public class OrderDetails implements Serializable {
     @Override
     public String toString() {
         return "OrderDetails: " +
-                "id=" + id +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                ", order=" + order;
+                "id = " + id +
+                ", product = " + product +
+                ", quantity = " + quantity +
+                ", order = " + order;
     }
 }

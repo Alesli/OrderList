@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.example.service.impl.OrderDetailsServiceImpl;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +13,10 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "orders")
-@ManagedBean(name="orders")
+@ManagedBean(name = "order")
 public class Order implements Serializable {
+
+    public static OrderDetailsServiceImpl ods;
 
     @Id
     @Column(name = "id")
@@ -37,13 +40,28 @@ public class Order implements Serializable {
     @Column(name = "date_creation")
     private Date dateCreation;
 
+
+    public void updateOrderDetails() {
+        ods = new OrderDetailsServiceImpl();
+        ods.updateOrder(this);
+    }
+
+    public Order getOderById() {
+        ods = new OrderDetailsServiceImpl();
+        Order order = ods.findOrderById(id);
+        nameCustomer = order.getNameCustomer();
+        addressCustomer = order.getAddressCustomer();
+        sumOrder = order.getSumOrder();
+        return order;
+    }
+
     @Override
     public String toString() {
         return "Order: " +
-                "id=" + id +
-                ", nameCustomer='" + nameCustomer +
+                "id = " + id +
+                ", nameCustomer = " + nameCustomer +
                 ", addressCustomer='" + addressCustomer +
-                ", sumOrder=" + sumOrder +
-                ", dateCreation=" + dateCreation;
+                ", sumOrder = " + sumOrder +
+                ", dateCreation = " + dateCreation;
     }
 }
