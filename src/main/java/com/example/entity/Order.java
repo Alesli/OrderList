@@ -52,6 +52,7 @@ public class Order implements Serializable {
         nameCustomer = order.getNameCustomer();
         addressCustomer = order.getAddressCustomer();
         sumOrder = order.getSumOrder();
+        dateCreation = order.getDateCreation();
         return order;
     }
 

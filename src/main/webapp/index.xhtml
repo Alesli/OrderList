@@ -82,14 +82,23 @@
 
     <div class="div">
         <h:form>
-            <p:panel header="Update order">
+            <p:panel header="Edit order">
                 <h:panelGrid columns="2">
+                    <h:outputText value="Order ID:"/>
+                    <h:inputText value="#{order.id}"/><br/>
+                    <h:commandButton value="Show order" action="#{order.getOderById}"/>
 
-                    Order ID: <h:inputText value="#{order.id}"/><br/>
-                    <h:commandButton value="Show order" action="#{order.getOderById}"/><br/>
-                    Name Customer: <h:inputText value="#{order.nameCustomer}"/><br/>
-                    Address Customer: <h:inputText value="#{order.addressCustomer}"/><br/>
-                    Sum Order: <h:inputText value="#{order.sumOrder}"/><br/>
+                    <h:outputText value="Name Customer:"/>
+                    <h:inputText value="#{order.nameCustomer}"/>
+
+                    <h:outputText value="Address Customer:"/>
+                    <h:inputText value="#{order.addressCustomer}"/>
+
+                    <h:outputText value="The total amount of the order:"/>
+                    <h:inputText value="#{order.sumOrder}"/>
+
+                    <h:outputText value="Date of creation:"/>
+                    <h:inputText value="#{order.dateCreation}"/><br/>
                     <h:commandButton value="Update" action="#{order.updateOrderDetails}"/>
                 </h:panelGrid>
             </p:panel>
@@ -98,14 +107,24 @@
     </div>
     <div class="div">
         <h:form>
-            <p:panel header="Update product">
+            <p:panel header="Edit product">
                 <h:panelGrid columns="2">
 
-                    Order ID: <h:inputText value="#{product.id}"/><br/>
-                    <h:commandButton value="Show order" action="#{product.getProductById}"/><br/>
-                    Serial Number : <h:inputText value="#{product.serialNumber}"/><br/>
-                    Name: <h:inputText value="#{product.name}"/><br/>
-                    Description: <h:inputText value="#{product.description}"/><br/>
+                    <h:outputText value="Product ID:"/>
+                    <h:inputText value="#{product.id}"/><br/>
+                    <h:commandButton value="Show order" action="#{product.getProductById}"/>
+
+                    <h:outputText value="Serial Number :"/>
+                    <h:inputText value="#{product.serialNumber}"/>
+
+                    <h:outputText value="Name:"/>
+                    <h:inputText value="#{product.name}"/>
+
+                    <h:outputText value="Description:"/>
+                    <h:inputText value="#{product.description}"/>
+
+                    <h:outputText value="Serial date production:"/>
+                    <h:inputText value="#{product.dateProduct}"/><br/>
                     <h:commandButton value="Update" action="#{product.updateProductDetails}"/>
                 </h:panelGrid>
             </p:panel>
