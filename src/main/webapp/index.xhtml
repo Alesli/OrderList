@@ -89,7 +89,7 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="Order ID:"/>
                     <h:inputText value="#{order.id}"/><br/>
-                    <h:commandButton value="Show order" action="#{order.getOderById}"/>
+                    <h:commandButton value="Show order available" action="#{order.getOderById}"/>
 
                     <h:outputText value="Name Customer:"/>
                     <h:inputText value="#{order.nameCustomer}"/>
@@ -113,7 +113,7 @@
 
                     <h:outputText value="Product ID:"/>
                     <h:inputText value="#{product.id}" required="false"/><br/>
-                    <h:commandButton value="Show order" action="#{product.getProductById}"/>
+                    <h:commandButton value="Show product available" action="#{product.getProductById}"/>
 
                     <h:outputText value="Serial Number :"/>
                     <h:inputText value="#{product.serialNumber}"/>
