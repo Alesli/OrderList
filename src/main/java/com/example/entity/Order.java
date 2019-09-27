@@ -4,7 +4,14 @@ import com.example.service.impl.OrderDetailsServiceImpl;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -15,7 +22,9 @@ import java.util.Date;
 @Entity
 @Table(name = "orders")
 @ManagedBean(name = "order")
-public class Order implements Serializable {
+@SessionScoped
+@FacesValidator("orderValidator")
+public class Order implements Serializable,Validator {
 
     public static OrderDetailsServiceImpl ods;
 
@@ -64,4 +73,18 @@ public class Order implements Serializable {
                 ", sumOrder = " + sumOrder +
                 ", dateCreation = " + dateCreation;
     }
+
+    @Override
+    public void validate(FacesContext facesContext, UIComponent uiComponent, Object obj)
+            throws ValidatorException {
+        Integer model = (Integer) obj;
+        ods = new OrderDetailsServiceImpl();
+        if (ods.findOrderById(model) == null) {
+            FacesMessage msg = new FacesMessage(
+                    "There is no such order. Please, enter the correct number.");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+
+            throw new ValidatorException(msg);
+        }
+        }
 }

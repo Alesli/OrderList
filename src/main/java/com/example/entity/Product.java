@@ -7,7 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.FacesValidator;
+import javax.faces.validator.Validator;
+import javax.faces.validator.ValidatorException;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -24,9 +31,10 @@ import java.util.Date;
 @Table(name = "product")
 @ManagedBean(name = "product")
 @XmlRootElement(name = "product")
+@SessionScoped
+@FacesValidator("productValidator")
 @XmlAccessorType(XmlAccessType.FIELD)
-
-public class Product implements Serializable {
+public class Product implements Serializable, Validator {
 
     public static OrderDetailsServiceImpl ods;
 
@@ -65,6 +73,20 @@ public class Product implements Serializable {
         name = product.getName();
         description = product.getDescription();
         return product;
+    }
+
+    @Override
+    public void validate(FacesContext facesContext, UIComponent uiComponent, Object obj)
+            throws ValidatorException {
+        Integer model = (Integer) obj;
+        ods = new OrderDetailsServiceImpl();
+        if (ods.findProductById(model) == null) {
+            FacesMessage msg = new FacesMessage(
+                    "There is no such product. Please, enter the correct number.");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+
+            throw new ValidatorException(msg);
+        }
     }
 
     @Override

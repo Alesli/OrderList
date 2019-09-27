@@ -88,7 +88,10 @@
             <p:panel header="Edit order">
                 <h:panelGrid columns="2">
                     <h:outputText value="Order ID:"/>
-                    <h:inputText value="#{order.id}"/><br/>
+                    <h:inputText id="ord" value="#{order.id}">
+                        <f:validator validatorId="orderValidator"/>
+                    </h:inputText><br/>
+                    <h:message for="ord" style="color:red"/><br/>
                     <h:commandButton value="Show order available" action="#{order.getOderById}"/>
 
                     <h:outputText value="Name Customer:"/>
@@ -112,7 +115,10 @@
                 <h:panelGrid columns="2">
 
                     <h:outputText value="Product ID:"/>
-                    <h:inputText value="#{product.id}" required="false"/><br/>
+                    <h:inputText id="prod" value="#{product.id}" required="false">
+                        <f:validator validatorId="productValidator"/>
+                    </h:inputText><br/>
+                    <h:message for="prod" style="color:red"/><br/>
                     <h:commandButton value="Show product available" action="#{product.getProductById}"/>
 
                     <h:outputText value="Serial Number :"/>
@@ -202,8 +208,8 @@
                 </table>
             </c:if>
             <!--<h:form class="button">-->
-                <!--<h:commandButton value="Update product"-->
-                                 <!--action="#{orderDetailsService.findAllProducts}"/>-->
+            <!--<h:commandButton value="Update product"-->
+            <!--action="#{orderDetailsService.findAllProducts}"/>-->
             <!--</h:form>-->
             <h:form class="button">
                 <h:commandButton value="Update product data from a XML file"
