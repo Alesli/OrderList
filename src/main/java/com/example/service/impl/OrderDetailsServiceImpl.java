@@ -5,7 +5,7 @@ import com.example.entity.OrderDetails;
 import com.example.entity.Product;
 import com.example.jpa.JpaUtil;
 import com.example.service.OrderDetailsService;
-import com.example.unmarshal.UnMarshalProduct;
+import com.example.utils.UnMarshalProduct;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.EntityManager;
@@ -36,18 +36,18 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     }
 
     @Override
-    public Order findOrderById(int id) {
+    public Order findOrderById(Integer id) {
         return entityManager.find(Order.class, id);
     }
 
     @Override
-    public Product findProductById(int id) {
+    public Product findProductById(Integer id) {
         return entityManager.find(Product.class, id);
     }
 
     @Override
     public void updateOrder(Order newOrder) {
-        if (newOrder.getId() != 0) {
+        if (newOrder.getId() != null) {
             entityManager.detach(newOrder);
             newOrder.setNameCustomer(newOrder.getNameCustomer());
             newOrder.setSumOrder(newOrder.getSumOrder());
@@ -62,7 +62,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 
     @Override
     public void updateProduct(Product newProduct) {
-        if (newProduct.getId() != 0) {
+        if (newProduct.getId() != null) {
             entityManager.detach(newProduct);
             newProduct.setName(newProduct.getName());
             newProduct.setSerialNumber(newProduct.getSerialNumber());
@@ -95,13 +95,5 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     public void getProductFromXML() {
         Product product = unMarshalProduct.getProduct();
         saveGood(product);
-//
-//            productForSave.setSerialNumber(product.getSerialNumber());
-//            productForSave.setName(product.getName());
-//            productForSave.setDescription(product.getDescription());
-//            productForSave.setDateProduct(product.getDateProduct());
-//
-//        saveProduct(productForSave);
-//        return findAllProducts();
     }
 }

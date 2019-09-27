@@ -65,8 +65,8 @@ ADD CONSTRAINT FK_order_detail_id_product FOREIGN KEY (id_product)
 REFERENCES product (id);
 
 INSERT INTO product VALUES
-('234KJ56UY8', 'monitor', 'bla-bla-bla', '2019-09-04', 1),
-('12FFD452H', 'refrigerator', 'bla-bla', '2019-09-11', 2),
+('234KJ56UY8', 'monitor', 'Diagonal 23.5 ", Resolution 1920 × 1080', '2019-09-04', 1),
+('12FFD452H', 'refrigerator', 'description about refrigerator', '2019-09-11', 2),
 ('23IO78UY6', 'cooling chamber', 'used to store perishable foods', '2019-07-09', 3);
 
 INSERT INTO orders VALUES

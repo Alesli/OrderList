@@ -1,4 +1,4 @@
-package com.example.unmarshal;
+package com.example.utils;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.text.SimpleDateFormat;

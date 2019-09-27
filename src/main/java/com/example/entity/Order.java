@@ -23,7 +23,7 @@ public class Order implements Serializable {
     @Column(name = "id")
     @Access(value = AccessType.PROPERTY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "name_customer")
@@ -35,7 +35,7 @@ public class Order implements Serializable {
 
     @Basic
     @Column(name = "sum_order")
-    private int sumOrder;
+    private Integer sumOrder;
 
     @Basic
     @Column(name = "date_creation")

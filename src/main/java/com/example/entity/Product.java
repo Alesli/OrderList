@@ -1,7 +1,7 @@
 package com.example.entity;
 
 import com.example.service.impl.OrderDetailsServiceImpl;
-import com.example.unmarshal.DateAdapter;
+import com.example.utils.DateAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +34,7 @@ public class Product implements Serializable {
     @Column(name = "id")
     @Access(value = AccessType.PROPERTY)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Basic
     @Column(name = "serial_number")

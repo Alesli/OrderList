@@ -1,22 +1,20 @@
-package com.example.unmarshal;
+package com.example.utils;
 
 import com.example.entity.Product;
-import com.example.service.OrderDetailsService;
-import com.example.service.impl.OrderDetailsServiceImpl;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.io.InputStream;
-import java.util.List;
+import java.util.Properties;
 
 public class UnMarshalProduct {
 
     private Product getUnMarshal() {
-//        String parh = "product.xml";
-//        InputStream stream = getClass().getClassLoader().getResourceAsStream(parh);
-        File xmlFile = new File("src/main/resources/product.xml");
+
+        Properties properties = PropertyReader.getProperties("application.properties");
+        String xmlFilePath = properties.getProperty("xml_file_path");
+        File xmlFile = new File(xmlFilePath);
         JAXBContext jaxbContext;
         try {
             jaxbContext = JAXBContext.newInstance(Product.class);
@@ -33,12 +31,12 @@ public class UnMarshalProduct {
     public Product getProduct() {
         Product product = getUnMarshal();
         Product productForSave = new Product();
-
-        productForSave.setSerialNumber(product.getSerialNumber());
-        productForSave.setName(product.getName());
-        productForSave.setDescription(product.getDescription());
-        productForSave.setDateProduct(product.getDateProduct());
-
+        if (product != null) {
+            productForSave.setSerialNumber(product.getSerialNumber());
+            productForSave.setName(product.getName());
+            productForSave.setDescription(product.getDescription());
+            productForSave.setDateProduct(product.getDateProduct());
+        }
         return productForSave;
     }
 }

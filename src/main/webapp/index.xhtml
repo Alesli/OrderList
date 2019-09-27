@@ -69,7 +69,7 @@
             <p:panel header="Get current time with Web-service_1">
                 <h:panelGrid columns="1" cellpadding="4">
 
-                    <p:commandButton id="btnId" value="Get date" action="#{beanDate.setDate}"
+                    <p:commandButton id="btnId" value="Get date" action="#{beanDate.date}"
                                      update="greeting-panel" oncomplete="PF('greetingDialog').show()"/>
                 </h:panelGrid>
             </p:panel>
@@ -112,7 +112,7 @@
                 <h:panelGrid columns="2">
 
                     <h:outputText value="Product ID:"/>
-                    <h:inputText value="#{product.id}"/><br/>
+                    <h:inputText value="#{product.id}" required="false"/><br/>
                     <h:commandButton value="Show order" action="#{product.getProductById}"/>
 
                     <h:outputText value="Serial Number :"/>
@@ -201,10 +201,10 @@
                     </ui:repeat>
                 </table>
             </c:if>
-            <h:form class="button">
-                <h:commandButton value="Update product"
-                                 action="#{orderDetailsService.findAllProducts}"/>
-            </h:form>
+            <!--<h:form class="button">-->
+                <!--<h:commandButton value="Update product"-->
+                                 <!--action="#{orderDetailsService.findAllProducts}"/>-->
+            <!--</h:form>-->
             <h:form class="button">
                 <h:commandButton value="Update product data from a XML file"
                                  action="#{orderDetailsService.getProductFromXML}"/>

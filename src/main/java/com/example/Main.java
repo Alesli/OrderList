@@ -1,11 +1,6 @@
 package com.example;
 
-import com.example.entity.Product;
-import com.example.service.OrderDetailsService;
 import com.example.service.impl.OrderDetailsServiceImpl;
-import com.example.unmarshal.UnMarshalProduct;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {

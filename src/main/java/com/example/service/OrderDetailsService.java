@@ -12,9 +12,9 @@ public interface OrderDetailsService {
 
     List<Product> findAllProducts();
 
-    Order findOrderById(int id);
+    Order findOrderById(Integer id);
 
-    Product findProductById(int id);
+    Product findProductById(Integer id);
 
     void updateOrder(Order newOrder);
 
