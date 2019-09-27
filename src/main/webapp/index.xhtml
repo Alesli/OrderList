@@ -69,7 +69,7 @@
             <p:panel header="Get current time with Web-service_1">
                 <h:panelGrid columns="1" cellpadding="4">
 
-                    <p:commandButton id="btnId" value="Get date" action="#{beanDate.date}"
+                    <p:commandButton id="btnId" value="Get date" action="#{сurrentTime.getCurrentTime()}"
                                      update="greeting-panel" oncomplete="PF('greetingDialog').show()"/>
                 </h:panelGrid>
             </p:panel>
