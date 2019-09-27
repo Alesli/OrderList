@@ -2,7 +2,11 @@
 
 The system contains orders with related goods.
 
-Web-service_1  returns current time
+The visual part of the program is implemented using `PrimeFaces`. In interface
+orders with their contents are displayed. Implemented the ability to edit orders from the interface.
+Filling in ***Products*** is carried out from an `XML` file at the click of a button ***Update data on goods***.
+
+Web-service_1 returns current time.
 
 ## Technologies used in the project:
 - `Java core`, jdk 1.8

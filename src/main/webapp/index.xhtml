@@ -18,7 +18,7 @@
             height: 100%;
         }
 
-        .button{
+        .button {
             margin: 5px;
             padding: 10px;
         }
@@ -158,8 +158,8 @@
                             <td>
                                 <ul>
                                     <li>Product ID: ${details.product.id}</li>
-                                    <li>Name: ${details.product.name}</li>
                                     <li>Product Serial Number: ${details.product.serialNumber}</li>
+                                    <li>Name: ${details.product.name}</li>
                                     <li>Description: ${details.product.description}</li>
                                     <li>Serial date production: <h:outputText value="#{details.product.dateProduct}">
                                         <f:convertDateTime pattern="dd.MM.yyyy"/>
@@ -172,6 +172,42 @@
             </c:if>
             <h:form class="button">
                 <h:commandButton value="Update order list" action="#{orderDetailsService.findAll()}"/>
+            </h:form>
+        </p:panel>
+    </div>
+
+    <div class="div">
+        <p:panel header="Product list">
+            <c:if test="${!empty orderDetailsService.findAllProducts()}">
+                <table class="tg">
+                    <tr>
+                        <th width="80">ID</th>
+                        <th width="200">Name</th>
+                        <th width="200">Product Serial Number</th>
+                        <th width="200">Description</th>
+                        <th width="200">Serial date production</th>
+                    </tr>
+                    <ui:repeat value="${orderDetailsService.findAllProducts()}" var="goods">
+                        <tr>
+                            <td class="row">Product ID: ${goods.id}</td>
+                            <td class="row">Product Serial Number: ${goods.serialNumber}</td>
+                            <td class="row">Name product: ${goods.name}</td>
+                            <td class="row">Description: ${goods.description}</td>
+                            <td class="row">Serial date production: <h:outputText value="#{goods.dateProduct}">
+                                <f:convertDateTime pattern="dd.MM.yyyy"/>
+                            </h:outputText>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </c:if>
+            <h:form class="button">
+                <h:commandButton value="Update product"
+                                 action="#{orderDetailsService.findAllProducts}"/>
+            </h:form>
+            <h:form class="button">
+                <h:commandButton value="Update product data from a XML file"
+                                 action="#{orderDetailsService.getProductFromXML}"/>
             </h:form>
         </p:panel>
 

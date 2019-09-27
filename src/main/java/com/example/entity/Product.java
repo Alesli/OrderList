@@ -1,6 +1,7 @@
 package com.example.entity;
 
 import com.example.service.impl.OrderDetailsServiceImpl;
+import com.example.unmarshal.DateAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,10 @@ import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,6 +23,9 @@ import java.util.Date;
 @Entity
 @Table(name = "product")
 @ManagedBean(name = "product")
+@XmlRootElement(name = "product")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class Product implements Serializable {
 
     public static OrderDetailsServiceImpl ods;
@@ -42,6 +50,7 @@ public class Product implements Serializable {
 
     @Basic
     @Column(name = "date_production")
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date dateProduct;
 
     public void updateProductDetails() {

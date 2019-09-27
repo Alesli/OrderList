@@ -5,9 +5,9 @@ import com.example.entity.OrderDetails;
 import com.example.entity.Product;
 import com.example.jpa.JpaUtil;
 import com.example.service.OrderDetailsService;
+import com.example.unmarshal.UnMarshalProduct;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.Date;
@@ -17,12 +17,21 @@ import java.util.List;
 public class OrderDetailsServiceImpl implements OrderDetailsService {
 
     private EntityManager entityManager = JpaUtil.getEntityManager();
+    private UnMarshalProduct unMarshalProduct = new UnMarshalProduct();
 
     @Override
     public List<OrderDetails> findAll() {
         String str = "SELECT od from OrderDetails od";
         TypedQuery<OrderDetails> query =
                 entityManager.createQuery(str, OrderDetails.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Product> findAllProducts() {
+        String str = "SELECT p from Product p";
+        TypedQuery<Product> query =
+                entityManager.createQuery(str, Product.class);
         return query.getResultList();
     }
 
@@ -58,11 +67,12 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
             newProduct.setName(newProduct.getName());
             newProduct.setSerialNumber(newProduct.getSerialNumber());
             newProduct.setDescription(newProduct.getDescription());
+            newProduct.setDateProduct(new Date());
             entityManager.getTransaction().begin();
             entityManager.merge(newProduct);
             entityManager.getTransaction().commit();
 
-        } else saveProduct(newProduct);
+        } else saveGood(newProduct);
     }
 
     @Override
@@ -74,10 +84,24 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
     }
 
     @Override
-    public Product saveProduct(Product product) {
+    public Product saveGood(Product product) {
         entityManager.getTransaction().begin();
         entityManager.persist(product);
         entityManager.getTransaction().commit();
         return product;
+
+    }
+
+    public void getProductFromXML() {
+        Product product = unMarshalProduct.getProduct();
+        saveGood(product);
+//
+//            productForSave.setSerialNumber(product.getSerialNumber());
+//            productForSave.setName(product.getName());
+//            productForSave.setDescription(product.getDescription());
+//            productForSave.setDateProduct(product.getDateProduct());
+//
+//        saveProduct(productForSave);
+//        return findAllProducts();
     }
 }

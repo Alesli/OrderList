@@ -10,6 +10,8 @@ public interface OrderDetailsService {
 
     List<OrderDetails> findAll();
 
+    List<Product> findAllProducts();
+
     Order findOrderById(int id);
 
     Product findProductById(int id);
@@ -20,5 +22,5 @@ public interface OrderDetailsService {
 
     Order saveOrder(Order order);
 
-    Product saveProduct(Product product);
+    Product saveGood(Product product);
 }
