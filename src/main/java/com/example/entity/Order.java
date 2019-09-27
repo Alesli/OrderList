@@ -24,7 +24,7 @@ import java.util.Date;
 @ManagedBean(name = "order")
 @SessionScoped
 @FacesValidator("orderValidator")
-public class Order implements Serializable,Validator {
+public class Order implements Serializable, Validator {
 
     public static OrderDetailsServiceImpl ods;
 
@@ -61,6 +61,7 @@ public class Order implements Serializable,Validator {
         nameCustomer = order.getNameCustomer();
         addressCustomer = order.getAddressCustomer();
         sumOrder = order.getSumOrder();
+        dateCreation = order.getDateCreation();
         return order;
     }
 
@@ -86,5 +87,5 @@ public class Order implements Serializable,Validator {
 
             throw new ValidatorException(msg);
         }
-        }
+    }
 }

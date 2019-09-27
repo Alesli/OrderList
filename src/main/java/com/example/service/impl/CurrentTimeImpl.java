@@ -14,6 +14,10 @@ public class CurrentTimeImpl implements CurrentTime {
     private Date currentDate = new Date();
     private SimpleDateFormat dateFormat = new SimpleDateFormat();
 
+    /**
+     * Метод возвращает тукущее время и дату
+     * @return String currentDate, в формате `dd.MM.yyyy HH:mm`
+     */
     @Override
     public String getCurrentTime() {
         return dateFormat.format(currentDate);

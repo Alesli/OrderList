@@ -72,6 +72,7 @@ public class Product implements Serializable, Validator {
         serialNumber = product.getSerialNumber();
         name = product.getName();
         description = product.getDescription();
+        dateProduct = product.getDateProduct();
         return product;
     }
 

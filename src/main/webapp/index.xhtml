@@ -103,6 +103,11 @@
                     <h:outputText value=" The total amount of the order:"/>
                     <h:inputText value="#{order.sumOrder}"/>
 
+                    <h:outputText value="Order creation date:"/>
+                    <h:inputText value="#{order.dateCreation}">
+                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                    </h:inputText>
+
                     <h:commandButton value="Update" action="#{order.updateOrderDetails}"/>
                 </h:panelGrid>
             </p:panel>
@@ -129,6 +134,11 @@
 
                     <h:outputText value="Description:"/>
                     <h:inputText value="#{product.description}"/>
+
+                    <h:outputText value="Serial date production:"/>
+                    <h:inputText value="#{product.dateProduct}">
+                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                    </h:inputText>
                     <h:commandButton value="Update" action="#{product.updateProductDetails}"/>
                 </h:panelGrid>
             </p:panel>

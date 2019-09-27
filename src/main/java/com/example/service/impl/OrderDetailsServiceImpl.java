@@ -45,6 +45,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
         return entityManager.find(Product.class, id);
     }
 
+    /* при обновлении заказа, устанавливается текущая дата */
     @Override
     public void updateOrder(Order newOrder) {
         if (newOrder.getId() != null) {
@@ -67,7 +68,7 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
             newProduct.setName(newProduct.getName());
             newProduct.setSerialNumber(newProduct.getSerialNumber());
             newProduct.setDescription(newProduct.getDescription());
-            newProduct.setDateProduct(new Date());
+            newProduct.setDateProduct(newProduct.getDateProduct());
             entityManager.getTransaction().begin();
             entityManager.merge(newProduct);
             entityManager.getTransaction().commit();
@@ -92,6 +93,9 @@ public class OrderDetailsServiceImpl implements OrderDetailsService {
 
     }
 
+    /**
+     * Метод сохраняет продукт из xml файла
+     */
     public void getProductFromXML() {
         Product product = unMarshalProduct.getProduct();
         saveGood(product);
